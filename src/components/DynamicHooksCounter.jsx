@@ -1,17 +1,17 @@
 /* eslint-disable react/prop-types */
 import { useDispatch, useSelector } from "react-redux";
-import { decrement, increment } from "./redux/counter/actionCreators";
+import { decrement, increment } from "./redux/dynamicCounter/actionCreators";
 
-export default function HooksCounter() {
-	const count = useSelector((state) => state.counter.value);
+export default function DynamicHooksCounter() {
+	const count = useSelector((state) => state.dynamicCounter.value);
 	const dispatch = useDispatch();
 
-	const handleIncrement = () => {
-		dispatch(increment());
+	const handleIncrement = (value) => {
+		dispatch(increment(value));
 	};
 
-	const handleDecrement = () => {
-		dispatch(decrement());
+	const handleDecrement = (value) => {
+		dispatch(decrement(value));
 	};
 
 	return (
@@ -20,13 +20,13 @@ export default function HooksCounter() {
 			<div className="flex space-x-3">
 				<button
 					className="bg-indigo-400 text-white px-3 py-2 rounded shadow"
-					onClick={handleIncrement}
+					onClick={() => handleIncrement(5)}
 				>
 					Increment
 				</button>
 				<button
 					className="bg-red-400 text-white px-3 py-2 rounded shadow"
-					onClick={handleDecrement}
+					onClick={() => handleDecrement(2)}
 				>
 					Decrement
 				</button>
